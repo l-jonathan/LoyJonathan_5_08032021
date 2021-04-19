@@ -158,13 +158,13 @@ let counter = document.querySelector('.count');
 
 
 //-----------------------------Fonction qui soustrait au compteur la quantité du produit supprimé--------
-/*function deleteItemQty(elementSuppr) {
+function deleteItemQty(elementSuppr) {
     let getCounter = JSON.parse(localStorage.getItem('counter'));
     let quantite = getCounter;
     quantite = quantite - elementSuppr;
     counter.innerHTML = quantite;
     localStorage.setItem('counter', JSON.stringify(quantite));
-};*/
+};
 
 
 //-------------------------------------Creation tableau produits  et objet contact à envoyer-----------------------------------------
