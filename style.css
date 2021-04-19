@@ -1,6 +1,8 @@
 /**** STYLE GENERAL ****/
 body {
     color: black;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }
 
 h1 {
@@ -23,7 +25,7 @@ header {
 }
 
 .container_nav {
-    width: 160px;
+    width: 250px;
 }
 
 .container_ul {
@@ -58,16 +60,19 @@ header {
 
 .img {
     border-radius: 25px 25px 0 0;
+    max-width: 196px;
+    height: 145px;
 }
 
 .name {
     margin-top: 5px;
+    font-weight: 600;
 }
 
 .infos_article {
     padding-left: 10px;
     padding-right: 10px;
-    text-align: justify;
+    text-align: center;
 }
 
 /**** STYLE PANIER ****/
@@ -82,8 +87,44 @@ header {
 }
 .form {
     margin-bottom: 10px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
+}
+
+#separator {
+    height: 2px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f3e9f1;
+}
+
+.img_basket {
+    width: 80px;
+    height: 80px;
+}
+
+.table_basket {
+    width: 80%;
+    margin: 5px;
+    background-color: #f3e9f1;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.label {
+    width: 250px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.less, .plus {
+    font-size: 1rem;
+    margin: 10px;
 }
 
 /**** STYLE PAGES ARTICLES ****/
@@ -92,20 +133,18 @@ header {
     justify-content: center;
     margin: 50px auto;
     width: 80%;
-    border-radius: 25px;
-    box-shadow: 0px 0px 20px 5px #f3e9f1;
 }
 
 .container_img {
     display: flex;
     width: 50%;
+    margin-right: 20px;
 }
 
 .container_img img {
     margin: auto;
-    height: 100%;
-    width: 200px;
-    border-radius: 25px 0 0 25px;
+    height: auto;
+    width: 100%;
 }
 
 .container_infos {
@@ -117,6 +156,16 @@ header {
 
 .name, .description, .rating, .color_select, .form_color, .add_basket, .see_basket {
     margin-top: 10px;
+}
+
+.add_basket {
+    max-width: 150px;
+    height: 30px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: #f3e9f1;
+    border-radius: 5px 5px;
 }
 
 /**** STYLE FOOTER ****/

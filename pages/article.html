@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <script src="https://kit.fontawesome.com/604b429f95.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../style.css">
 
         <title>Peluche - Orinoco</title>
@@ -20,7 +22,7 @@
                                 <a href="../index.html">Accueil</a>
                             </li>
                             <li class="list_item">
-                                <a href="panier.html">Panier</a>
+                                <a href="panier.html">Panier(<span class="count"></span>)</a>
                             </li>
                         </ul>
                     </nav>
@@ -30,22 +32,15 @@
         <main>
             <div class="container_article">
                 <div class="container_img">
-                    <img src="../images/ours.jpeg" alt="Ours en peluche">
+                    <img class="imgArticle" src="" alt="Ours en peluche">
                 </div>
                 <div class="container_infos">
-                    <p class="name">Norbert</p>
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="price">2900€</p>
+                    <p class="name"></p>
+                    <p class="description"></p>
+                    <p class="price"></p>
                     <div class="form_color">
                         <label for="color_select">Couleur :</label>
-                        <select name="color" id="color"></select>
+                        <select name="color" class="color" id="color"></select>
                     </div>
                     <button type="button" class="add_basket">Ajouter au panier</button>
                     <a href="panier.html" class="see_basket">Voir votre panier</a>
@@ -60,5 +55,6 @@
                 <p>Livraisons et retours</p>
             </div>
         </footer>
+        <script src="../js/article.js"></script>
     </body>
 </html>
