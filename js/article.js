@@ -82,6 +82,7 @@ function checkColor(itemInCart, theName) {
     btnPanier.style.display = "block";
     let choixCouleur = document.querySelector('#color');
     let productExist = (itemInCart.find(nom => nom.name === theName && nom.colorSelected === choixCouleur.value));
+    console.log("produit: "+productExist);
     if (productExist) {
         addCartButton.disabled = true;
     } else {
@@ -100,6 +101,17 @@ function colorChange(itemInCart, theName) {
             addCartButton.disabled = false; 
         }
     });
+}
+
+//-------------fonction pour verifier et agir sur l'etat des boutons de la page hors du clic------------------------
+function alreadyAdded (data) {
+    let alreadyAdded = JSON.parse(localStorage.getItem('ItemInCart'));
+    let btnPanier = document.querySelector('.add_basket');
+    if (alreadyAdded.length > 0) {
+        checkColor(alreadyAdded, data.name);
+        colorChange(alreadyAdded, data.name);
+        countQty(alreadyAdded);
+    }
 }
 
 //----------------------------fonction qui compte et affiche la quantité de produit sélectionné----------

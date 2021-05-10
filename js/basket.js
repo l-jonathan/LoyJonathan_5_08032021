@@ -167,10 +167,12 @@ function deleteItemQty(elementSuppr) {
 };
 
 
-//-------------------------------------Creation tableau produits  et objet contact à envoyer-----------------------------------------
-/*let products = [];
+//-------------------------------------Creation tableau produits et objet contact à envoyer-----------------------------------------
+products = [];
 for(let i = 0; i < quantite.length; i++) {
-    products.push(getItemInCart[i].productId);
+    console.log("ici:"+getItemInCart[i].colorSelected);
+    console.log("et là:"+getItemInCart[i].articleId);
+    products.push(getItemInCart[i].articleId);
 }
 class Contact {
     constructor(lastName, firstName, address, city, email) {
@@ -191,22 +193,26 @@ let address = document.querySelector("#address");
 let city = document.querySelector("#city");
 let errorMessage = document.querySelector(".error");
 //----------------------------------------Soumission du formulaire----------------------------------
+contact = null;
+order = [];
 myForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (checkForm() == true) {
-        let contact = new Contact(this.lastname.value,this.firstname.value,this.address.value,this.city.value,this.email.value);
-        let order = {
+        contact = new Contact(this.lastname.value,this.firstname.value,this.address.value,this.city.value,this.email.value);
+        order = {
                 products,
                 contact
                 };
+        console.log("order :"+order);
+        console.log("produit:"+products);
         sendForm(order);
     } else {
         e.preventDefault();
     }
-})*/
+})
 
 //-----------------------------------------Validation formulaire--------------------------------------
-/*function checkForm() {
+function checkForm() {
     let regexName = /^[A-Za-z\'\s\.\-\,]+$/;
     let regexEmail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/; 
     let regexAddress = /^[A-Za-z\0-9\'\s\.\-\,]+$/;
@@ -231,13 +237,13 @@ myForm.addEventListener('submit', (e) => {
         console.log("all good");
         return true;
     }
-}*/
+}
 
 //----------------------------------------------Envoi données au serveur-------------------------------------
-/*async function sendForm(order) {
+async function sendForm(order) {
     try {
-        //let response = await fetch("http://localhost:3000/api/teddies/order", {
-        let response = await fetch("https://oc-orinoco-p5.herokuapp.com/api/teddies/order", {
+        console.log(products);
+        let response = await fetch("http://localhost:3000/api/teddies/order", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -254,11 +260,11 @@ myForm.addEventListener('submit', (e) => {
     } catch (e) {
         console.log(e);
     }
-}*/
+}
 
 //------------------------------localStorage des infos de la confirmation de commande du backend----------
-/*function confirmationId(resp) {
+function confirmationId(resp) {
     let orderId = resp.orderId;
     localStorage.setItem("orderConfirmationId", orderId);
     localStorage.setItem("orderConfirmation", JSON.stringify(resp));
-}*/
+}
