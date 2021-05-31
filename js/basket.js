@@ -1,18 +1,22 @@
-////Variables de récupération des données dans le localStorage-------------------
+////Variables de récupération des données dans le localStorage
 let getItemInCart = JSON.parse(localStorage.getItem('ItemInCart'));
 let getPrices = JSON.parse(localStorage.getItem('itemPrice'));
 let totalPrice = JSON.parse(localStorage.getItem('totalPrice'));
 
-////Affichage panier
+////Affichage du panier
 let tbody = document.querySelector('.tbody');
 let trow = document.createElement("tr");
 
-////Affichage texte panier vide
+////Affichage du texte quand le panier est vide et active/désactive le bouton de commande
 let panierVide = document.querySelector('.empty_basket');
+let btnInactif = document.querySelector('#btn');
 if(getItemInCart.length > 0) {
     panierVide.style.display = "none";
+    btnInactif.disabled = false;
 } else if (getItemInCart.length === 0) {
     panierVide.style.display = "block";
+    btnInactif.disabled = true;
+
 }
 
 ////Affichage du tableau comprenant les produits
@@ -27,13 +31,14 @@ getItemInCart.forEach(item => {
             </div>
         </td>
         <td>${item.name} - ${item.colorSelected}</td>
-        <td><span class="fas fa-minus less"></span><span class="qty mx-2 px-2 border">${item.quantity}</span><span class="fas fa-plus plus"></span></td>
+        <td><span class="fas fa-minus less"></span><span class="qty mx-2 px-2 border">${item.quantity}
+            </span><span class="fas fa-plus plus"></span></td>
         <td><span class="price totprice">${item.price/100}</span>€</td>
         <td class="delete">Supprimer</td>
     `
 });
 
-//-----------------------------------------Manipulation prix------------------------------------
+////Fonction qui gère la hausse et la baisse du prix, à l'ajout ou au retrait d'un produit, depuis le panier
 let addItem = document.querySelectorAll(".plus");
 let decreaseItem = document.querySelectorAll(".less");
 let price = document.querySelectorAll(".price");
@@ -67,7 +72,7 @@ let sumTotal;
     }
 })();
 
-//-------------------------------------------Manipulation quantité---------------------------------------
+////Fonction qui gère l'ajout ou le retrait d'objet depuis le panier
 let quantite = document.querySelectorAll(".qty");
 (function manipulateQty() {
     for(let i = 0; i < quantite.length; i++) {
@@ -87,7 +92,7 @@ let quantite = document.querySelectorAll(".qty");
     }
 })();
 
-//----------------------------------Fonction de calcul des differentes sommes---------------------------------
+////Fonction de calcul des differentes sommes
 (function sum() {
     for(let j = 0; j < price.length; j++) {
         sumTotal = totalPrice.reduce((a, b)=> a + b,0);
@@ -122,7 +127,7 @@ let quantite = document.querySelectorAll(".qty");
             }
         })   
     }
-    //Suppression au clic sur le mot supprimer
+    //Suppression au clic du bouton Supprimer
     for(let j = 0; j < effacer.length; j++) {
         effacer[j].addEventListener("click", () => {
                 console.log(getItemInCart[j]);
@@ -156,8 +161,7 @@ let counter = document.querySelector('.count');
     }
 })(getItemInCart);
 
-
-//-----------------------------Fonction qui soustrait au compteur la quantité du produit supprimé--------
+////Fonction qui soustrait au compteur la quantité du produit supprimé
 function deleteItemQty(elementSuppr) {
     let getCounter = JSON.parse(localStorage.getItem('counter'));
     let quantite = getCounter;
@@ -166,12 +170,9 @@ function deleteItemQty(elementSuppr) {
     localStorage.setItem('counter', JSON.stringify(quantite));
 };
 
-
-//-------------------------------------Creation tableau produits et objet contact à envoyer-----------------------------------------
+////Création du tableau produits et objet contact à envoyer
 products = [];
 for(let i = 0; i < quantite.length; i++) {
-    console.log("ici:"+getItemInCart[i].colorSelected);
-    console.log("et là:"+getItemInCart[i].articleId);
     products.push(getItemInCart[i].articleId);
 }
 class Contact {
@@ -192,26 +193,27 @@ let emailAddress = document.querySelector("#email");
 let address = document.querySelector("#address");
 let city = document.querySelector("#city");
 let errorMessage = document.querySelector(".error");
-//----------------------------------------Soumission du formulaire----------------------------------
+
+////Soumission du formulaire
 contact = null;
 order = [];
 myForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (checkForm() == true) {
-        contact = new Contact(this.lastname.value,this.firstname.value,this.address.value,this.city.value,this.email.value);
+        contact = new Contact(this.lastname.value,
+            this.firstname.value,this.address.value,
+            this.city.value,this.email.value);
         order = {
                 products,
                 contact
                 };
-        console.log("order :"+order);
-        console.log("produit:"+products);
         sendForm(order);
     } else {
         e.preventDefault();
     }
 })
 
-//-----------------------------------------Validation formulaire--------------------------------------
+////Validation formulaire
 function checkForm() {
     let regexName = /^[A-Za-z\'\s\.\-\,]+$/;
     let regexEmail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/; 
@@ -239,7 +241,7 @@ function checkForm() {
     }
 }
 
-//----------------------------------------------Envoi données au serveur-------------------------------------
+////Envoi des données au serveur
 async function sendForm(order) {
     try {
         console.log(products);
@@ -262,7 +264,7 @@ async function sendForm(order) {
     }
 }
 
-//------------------------------localStorage des infos de la confirmation de commande du backend----------
+////localStorage des informations de la confirmation de commande du backend
 function confirmationId(resp) {
     let orderId = resp.orderId;
     localStorage.setItem("orderConfirmationId", orderId);

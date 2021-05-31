@@ -11,7 +11,7 @@ class ArticlePicked {
     }
 }
 
-//--------------------------fonction async anonyme pour recupérer les données-----------------------
+////Fonction permettant de recupérer les informations lié à un objet
 (async function() {
     try {
         let response = await fetch(`http://localhost:3000/api/teddies/${articleId}`);
@@ -21,11 +21,10 @@ class ArticlePicked {
         alreadyAdded(data);
     } catch (error) {
         console.log(error);
-    }
-    
+    }  
 })()
 
-//----------------------------fonction qui permet l'affichage des données----------------------------
+////Fonction permettant l'affichage des données
 function articleInfo(data) {
     let articleImage = document.querySelector('.imgArticle');
     let articleName = document.querySelector('.name');
@@ -44,7 +43,7 @@ function articleInfo(data) {
     });
 }
 
- //----------------------------fonction qui permet d'ajouter un produit au panier au clic sur le bouton--
+////Fonction permettant d'ajouter un produit au panier lors du clic sur le bouton
  function onClick(data) {
     let itemInCart = JSON.parse(localStorage.getItem('ItemInCart'));
     let addCartButton = document.querySelector(".add_basket");
@@ -75,14 +74,13 @@ function articleInfo(data) {
     })
 }
 
-//---------------------fonction qui verifie si le produit existe deja et agit sur le bouton----------
+////fonction qui verifie si le produit existe deja et agit sur le bouton
 function checkColor(itemInCart, theName) {
     let btnPanier = document.querySelector('.see_basket');
     let addCartButton = document.querySelector(".add_basket");
     btnPanier.style.display = "block";
     let choixCouleur = document.querySelector('#color');
     let productExist = (itemInCart.find(nom => nom.name === theName && nom.colorSelected === choixCouleur.value));
-    console.log("produit: "+productExist);
     if (productExist) {
         addCartButton.disabled = true;
     } else {
@@ -90,7 +88,7 @@ function checkColor(itemInCart, theName) {
     }
 }
 
-//----------------------fonction qui ecoute le changement de couleur et agit sur le bouton---------
+////fonction qui écoute le changement de couleur et agit sur le bouton
 function colorChange(itemInCart, theName) {
     let choixCouleur = document.querySelector('#color');
     let addCartButton = document.querySelector(".add_basket");
@@ -103,7 +101,7 @@ function colorChange(itemInCart, theName) {
     });
 }
 
-//-------------fonction pour verifier et agir sur l'etat des boutons de la page hors du clic------------------------
+////fonction pour vérifier et agir sur l'état des boutons de la page hors du clic
 function alreadyAdded (data) {
     let alreadyAdded = JSON.parse(localStorage.getItem('ItemInCart'));
     let btnPanier = document.querySelector('.add_basket');
@@ -114,7 +112,7 @@ function alreadyAdded (data) {
     }
 }
 
-//----------------------------fonction qui compte et affiche la quantité de produit sélectionné----------
+////fonction qui compte et affiche la quantité de produit sélectionné
 function countQty(itemInCart) {
     let quantite = 0;
     for(let i = 0; i < itemInCart.length; i++) {
