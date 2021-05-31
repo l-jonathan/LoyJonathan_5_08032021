@@ -5,5 +5,5 @@ npm install
 
 <h2>Démarrer le serveur de développement :</h2>
 
-Depuis un terminal, lancer la commande 'node server' à partir du fichier JWDP5
+Depuis un terminal, lancer la commande 'node server' à partir du fichier JWDP5<br><br>
 Le site sera ensuite accéssible à partir de l'url : http://localhost:3000
